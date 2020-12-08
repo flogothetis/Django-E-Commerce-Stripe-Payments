@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+        <h2>Log In</h2>
+            <form method="post">
+              {% csrf_token %}
+              {{form.as_p}}
+              <button class ="btn btn-primary" type="submit">Log In</button>
+            </form>
+        </div>
+          </div>
+    </div>
+  </main>
+{% endblock %}
+

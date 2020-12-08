@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class=" pt-5">
+    <div class="container">
+
+          <table class="table ">
+              <thead class="thead-dark ">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Item Title</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order_item in object.items.all %}
+                <tr>
+                  <th scope="row">{{forloop.counter}}</th>
+                  <td>
+                    <a href = "{% url 'dj_e_commerce:product' slug=order_item.item.slug %}"> {{order_item.item.title}} </a>
+                  </td>
+                  <td>${{order_item.item.get_price}} </td>
+                  <td>
+                    <a href="{% url 'dj_e_commerce:decrease-quantity' slug=order_item.item.slug %}"> <i class="fas fa-minus"></i></a>
+                    {{order_item.quantity}}
+                    <a href="{% url 'dj_e_commerce:increase-quantity' slug=order_item.item.slug %}"><i class="fas fa-plus"></i> </a>
+                  </td>
+                  <td>
+                    {% if order_item.item.discount_price %}
+                    ${{order_item.get_total_price}}
+                    <span class="badge badge-primary"> Saving ${{order_item.get_amount_saved}}</span>
+                    {%else%}
+                    ${{order_item.get_total_price}}
+                    {% endif %}
+
+
+                  </td>
+                </tr>
+                {% empty %}
+                <p> No items in your cart</p>
+              {% endfor %}
+              <tr>
+                <td colspan = "4">
+                  <b> Order Total </b>
+                </td>
+                <td><b> ${{object.get_total}} </b></td>
+              </tr>
+
+                <tr>
+            <td colspan="5">
+              {% if object.items.all.count > 0%}
+            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
+              {% endif%}
+            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            </td>
+        </tr>
+              </tbody>
+            </table>
+
+    </div>
+  </main>
+{% endblock %}

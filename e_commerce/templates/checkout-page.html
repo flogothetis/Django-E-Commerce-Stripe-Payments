@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+  <main >
+    <div class="container wow fadeIn mt-5">
+      <h2 class="my-5 h2 text-center">Checkout form</h2>
+      <div class="row">
+        <div class="col-md-8 mb-4">
+          <div class="card">
+
+            {% if form.errors %}
+            {% for field in form %}
+             {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+            {% endif %}
+
+            <form action="{%url 'dj_e_commerce:checkout' %}" method="POST" class="card-body">
+              {% csrf_token %}
+
+              <h3>Shipping address</h3>
+
+              <div class='hideable_shipping_form'>
+
+                <div class="md-form mb-5">
+                  <input type='text' placeholder='1234 Main St' id='street_address' name='street_address' class='form-control' />
+                  <label for="street_address" class="">Address</label>
+
+                   {{ error|escape }}
+
+                </div>
+
+                <div class="md-form mb-5">
+                  <input type='text' placeholder='Apartment or suite' id='apartment_address' name='apartment_address' class='form-control' />
+                  <label for="apartment_address" class="">Address 2 (optional)</label>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-12 mb-4">
+                    <label for="country">Country</label>
+                    {{ form.country }}
+                    <div class="invalid-feedback">
+                      Please select a valid country.
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 mb-4">
+                    <label for="zip">Zip</label>
+                    <input type='text' placeholder='Zip code' id='zip' name='zip' class='form-control' />
+                    <div class="invalid-feedback">
+                      Zip code required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="same_shipping_address" id="same_billing_address">
+                  <label class="custom-control-label" for="same_shipping_address">Billing address is the same as my shipping address</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" name="save_info" id="save_info">
+                  <label class="custom-control-label" for="save_info">Save as default shipping address</label>
+                </div>
+
+              </div>
+
+
+              <hr>
+
+              <hr>
+
+              <h3>Payment option</h3>
+
+              <div class="d-block my-3">
+                {% for value, name in form.fields.payment_option.choices %}
+                <div class="custom-control custom-radio">
+                  <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required>
+                  <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+                </div>
+                {% endfor %}
+              </div>
+
+              <hr class="mb-4">
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </main>
+{% endblock %}

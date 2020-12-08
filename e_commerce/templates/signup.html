@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+              <h2>Sign up</h2>
+            <hr>
+            {% if form.errors %}
+            {% for field in form %}
+             {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+            {% endif %}
+              <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Sign up</button>
+              </form>
+
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
