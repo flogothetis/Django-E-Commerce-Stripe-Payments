@@ -28,7 +28,7 @@ class Item(models.Model):
     description = models.CharField (max_length= 1000, blank= True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length= 10, default='S')
     label = models.CharField(choices=LABEL_CHOICES, max_length= 10, default='P')
-    slug = models.SlugField()
+    slug = models.SlugField(unique= True)
     image = models.ImageField()
 
     def __str__(self):
@@ -77,6 +77,7 @@ class Order(models.Model):
                                         null= True)
     payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True,
                                         null=True)
+
     def __str__(self):
         return self.user.username
 
@@ -109,3 +110,9 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Coupon(models.Model) :
+    code = models.CharField(max_length = 15)
+
+    def __str__(self):
+        return self.code

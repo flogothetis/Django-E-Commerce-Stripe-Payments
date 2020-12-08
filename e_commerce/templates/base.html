@@ -56,8 +56,8 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <strong class="blue-text">MDB</strong>
+      <a class="navbar-brand waves-effect" href="/" >
+        <strong class="blue-text">E-Commerse DJANGO</strong>
       </a>
 
       <!-- Collapse -->
@@ -76,18 +76,13 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'dj_e_commerce:checkout' %}" target="_blank">Checkout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href=""
-              target="_blank">Products</a>
-          </li>
+
 
         </ul>
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link waves-effect" href="{% url 'dj_e_commerce:order-summary' %}">
               <span class="badge red z-depth-1 mr-1"> {{request.user| cart_item_count }}</span>
@@ -95,22 +90,22 @@
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
           </li>
+
           <li class="nav-item">
-            <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
-              <i class="fab fa-facebook-f"></i>
+            <a href="{% url 'logout' %}" class="nav-link waves-effect" target="_blank">
+              <p>Logout</p>
             </a>
           </li>
+
+          {% else %}
+
           <li class="nav-item">
-            <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
-              <i class="fab fa-twitter"></i>
+            <a href="{% url 'login' %}" class="nav-link waves-effect" target="_blank">
+              <p>Login</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
-              target="_blank">
-              <i class="fab fa-github mr-2"></i>MDB GitHub
-            </a>
-          </li>
+          {% endif %}
+
         </ul>
 
       </div>
@@ -118,7 +113,7 @@
     </div>
   </nav>
   <!-- Navbar -->
- <div class="mt-5">
+ <div style = "padding-top:70px">
 {% if messages %}
     {% for message in messages %}
    <div class="alert alert-{{message.tags}}" role="alert">
@@ -153,35 +148,35 @@
 
     <!-- Social icons -->
     <div class="pb-4">
-      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-facebook-f mr-3"></i>
       </a>
 
-      <a href="https://twitter.com/MDBootstrap" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-twitter mr-3"></i>
       </a>
 
-      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-youtube mr-3"></i>
       </a>
 
-      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-google-plus-g mr-3"></i>
       </a>
 
-      <a href="https://dribbble.com/mdbootstrap" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-dribbble mr-3"></i>
       </a>
 
-      <a href="https://pinterest.com/mdbootstrap" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-pinterest mr-3"></i>
       </a>
 
-      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-github mr-3"></i>
       </a>
 
-      <a href="http://codepen.io/mdbootstrap/" target="_blank">
+      <a href="#" target="_blank">
         <i class="fab fa-codepen mr-3"></i>
       </a>
     </div>

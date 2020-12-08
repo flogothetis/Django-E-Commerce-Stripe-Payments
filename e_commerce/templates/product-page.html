@@ -50,22 +50,24 @@
             <p> {{object.description }} </p>
             {% endif %}
 
-            <form action="{% url 'dj_e_commerce:add-to-cart' slug=object.slug%}" class="d-flex justify-content-https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpgleft" method="POST">
+            <form action="{% url 'dj_e_commerce:add-to-cart' slug=object.slug%}" class="" method="POST">
               <!-- Default input -->
               {% csrf_token %}
-              <input type="number" name= "quantity" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+              <input type="number" name= "quantity" value="1" aria-label="Search" class="" style="width: 100px">
+              <button class="btn btn-primary" type="submit">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 
-            </form>
-
-              <!-- Default input -->
-              <a class="btn btn-primary btn-md my-0 p" style-="display:inline-block"
+               <!-- Default input -->
+              <a class="btn btn-primary"
                  href = "{% url 'dj_e_commerce:remove-from-cart' slug=object.slug%}">
                 Remove from cart
                <i class="fas fa-shopping-cart ml-1"></i>
               </a>
+
+            </form>
+
+
 
           </div>
           <!--Content-->
