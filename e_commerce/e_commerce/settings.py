@@ -119,28 +119,19 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# this defines the url for static files
-# eg: base-url.com/static/your-js-file.js
 STATIC_URL = '/static/'
-
-# this is directory name where collectstatic files command will put your app level static files
 STATIC_ROOT = 'staticfiles'
-
-
-
-# this is directory paths where you have to put your project level static files
-# you can put multiple folders here
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
 MEDIA_URL ='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
-# config/settings.py
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/' # new
-STRIPE_SECRET_KEY = 'sk_test_51HecHKG5K6HWS5kNZoA5xl7mUoghROVSSWZZXhFqX799CMXqsVjRf4Qzd3X677O1WzwVAakIUCpoP5fC0oVt4CJk00TERXPWt5'
-STRIPE_PUBLIC_KEY = 'pk_test_51HecHKG5K6HWS5kN7cuERWKhZOjpJ14GwW6d5RSMikXIY8oPeIACslw1VG0hM7P9Sk9uzLa2O2A6g6fibCxJNhSs00yJ9sGE7M'
+
+# YOUR STRIPE'S PUBLIC AND SECRET KEY
+STRIPE_SECRET_KEY = ''
+STRIPE_PUBLIC_KEY = ''
