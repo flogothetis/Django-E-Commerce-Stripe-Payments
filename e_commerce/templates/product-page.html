@@ -50,6 +50,8 @@
             <p> {{object.description }} </p>
             {% endif %}
 
+            {% if user.is_authenticated%}
+
             <form action="{% url 'dj_e_commerce:add-to-cart' slug=object.slug%}" class="" method="POST">
               <!-- Default input -->
               {% csrf_token %}
@@ -66,6 +68,9 @@
               </a>
 
             </form>
+            {% else %}
+              <a href="{% url 'login' %}"> Login in and buy  </a>
+            {% endif %}
 
 
 

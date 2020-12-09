@@ -40,7 +40,9 @@ class OrderSummaryView(LoginRequiredMixin, View):
             return redirect('/')
 
 
-class ItemDetailView(DetailView):
+
+
+class ItemDetailView( DetailView):
     '''
     Renders detail view for a single item
     '''
@@ -65,13 +67,13 @@ def add_to_cart(request, slug):
         if order_item.exists():
             quant = order_item[0].quantity
             order_item.update(quantity=quant + int(request.POST.get('quantity')))
-            messages.info(request, "This item was added to the cart")
+            messages.info(request, "This item has been added to your cart")
 
         else:
             #Create a new product Order Item and append it to the Order
             order_item = OrderItem.objects.create(item=item)
             order.items.add(order_item)
-            messages.info(request, "This item was added to the cart")
+            messages.info(request, "This item has been added to your cart")
 
     else:
         #Create new order
@@ -79,7 +81,7 @@ def add_to_cart(request, slug):
         order_item = OrderItem.objects.create(item=item)
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, "This item was added to the cart")
+        messages.info(request, "This item has been added to your cart")
     return redirect('dj_e_commerce:product', slug=slug)
 
 @login_required
@@ -98,7 +100,7 @@ def remove_from_cart(request, slug):
         # Delete item from the cart
         if order_item.exists():
             order.items.remove(order_item[0])
-            messages.info(request, "Item successfully removed from the cart")
+            messages.info(request, "Item successfully removed from your cart")
         else:
             messages.info(request, "No such item in your cart")
     else:
@@ -200,7 +202,7 @@ class PaymentView (LoginRequiredMixin, View):
 
 
 
-class CheckOutView( LoginRequiredMixin, View):
+class CheckOutView( LoginRequiredMixin,  View):
     '''
     Checkout page
     1. Save shipping address and related information
