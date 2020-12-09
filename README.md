@@ -4,16 +4,13 @@ This is a very simple e-commerce website built with Django.
 
 ## Quick demo
 
-[![alt text](https://justdjango.s3-us-west-2.amazonaws.com/media/gifs/djecommerce.gif "Logo")](https://youtu.be/z4USlooVXG0)
+![demo](https://user-images.githubusercontent.com/25617530/101597714-c46f3c00-39ff-11eb-9fd0-ee2966117656.gif)
 
 ---
 
 ## Project Summary
 
-The website displays products. Users can add and remove products to/from their cart while also specifying the quantity of each item. They can then enter their address and choose Stripe to handle the payment processing.
-
-[![alt text](https://justdjango.s3-us-west-2.amazonaws.com/media/thumbnails/djecommerce.png "Logo")](https://youtu.be/z4USlooVXG0)
-
+The website displays products. Users can add and remove products to/from their cart while also specifying the quantity of each item. They can then enter their address and choose Stripe to handle the payment processing. Feel free to fork the project and build your own website.
 ---
 
 ## Running this project
@@ -48,6 +45,6 @@ Now you can run the project with this command
 python manage.py runserver
 ```
 
-**Note** if you want payments to work you will need to enter your own Stripe API keys into the `.env` file in the settings files.
+**Note** if you want payments to work you will need to enter your own Stripe API keys into the settings files.
 
 ---
